@@ -1,5 +1,7 @@
 import express from 'express';
-import { secretes } from './secretes';
+import routes from './routes';
+import { PrismaClient } from '@prisma/client';
+import globalErrorHandler from './middleware/globalErrorHandler.middleware';
 
 const app = express();
 
@@ -7,9 +9,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.get('/', (req, res) => {
-    res.send(`Hello from App!!!!`);
-});
+app.use('/api', routes);
+app.use(globalErrorHandler);
+
+export const prisma = new PrismaClient();
 
 
 export default app;
