@@ -6,7 +6,7 @@ import { InternalError } from "../exceptions/internalError";
 
 export const autheriseAdmin = (req: Request, res: Response, next: NextFunction) => {
     try{
-        if(res.locals.role !== 'Admin'){
+        if(res.locals.role !== 'admin'){
             next(new UnAuthorisedError('You are not an admin',ErrorCode.USER_NOT_AUTHORIZED,null))
             return;
         }
