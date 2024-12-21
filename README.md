@@ -12,16 +12,15 @@ Ensure you have the following installed on your system:
 ## Steps to Run the Application
 
 ### 1. Clone the Repository
-First, clone the repository to your local machine:
+First, clone the repository to your local machine
 
-```bash
-git clone <repository-url>
-cd <project-directory>'
+   git clone "url"
+   
 
-#### 2. Install The Dependecy 
+### 2. Install The Dependecy 
      npm instal
      npm install --save-dev
-#### 3. Add .env File
+### 3. Add .env File
        PORT=3000
        SECRETE_KEY="AddedARandomKey"
        EMAIL_USER=""
@@ -29,16 +28,16 @@ cd <project-directory>'
        EMAIL_PASS=""
        DATABASE_URL="mysql://user:password@localhost:3306/backend?schema=public"
 
-#### 4. Setup the DataBase
+### 4. Setup the DataBase
         npx prisma migrate dev
 
-#### 5. Build the Project
+### 5. Build the Project
         npm run build
 
-#### 6. Run the Project
+### 6. Run the Project
         npm run start
 
-#### 7. Running in Development Mode
+### 7. Running in Development Mode
         npm run dev
         
        
