@@ -35,9 +35,16 @@ async function findAllUser(payload: any){
     return user
 }
 
+async function fetchUserById (userId: number)  {
+    return prisma.user.findUnique({
+      where: { id: userId },
+    });
+  };
+
 
 export default {
     createUser,
     findUser,
-    findAllUser
+    findAllUser,
+    fetchUserById
 }

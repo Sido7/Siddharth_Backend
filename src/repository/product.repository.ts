@@ -61,10 +61,32 @@ async function deleteProduct(productId: number) {
     return Product
 }
 
+async function fetchProductById(productId: number) {
+    return prisma.product.findUnique({
+      where: { id: productId },
+    });
+  }
+  
+  async function updateProductStock(productId: number, quantity: number) {
+    return prisma.product.update({
+      where: { id: productId },
+      data: { stock: { decrement: quantity } },
+    });
+  }
+  
+  async function restoreProductStock(productId: number, quantity: number) {
+    return prisma.product.update({
+      where: { id: productId },
+      data: { stock: { increment: quantity } },
+    });
+  }
 
 export default {
     createProduct,
     findProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    fetchProductById,
+    updateProductStock,
+    restoreProductStock
 }

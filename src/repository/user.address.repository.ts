@@ -37,10 +37,17 @@ async function deleteUserAddress(addressId: number) {
     return userAddress
 }
 
+async function fetchAddressById (addressId: number)  {
+    return prisma.address.findUnique({
+      where: { id: addressId },
+    });
+  };
+
 
 export default {
     createUserAddress,
     findUserAddress,
     updateUserAddress,
-    deleteUserAddress
+    deleteUserAddress,
+    fetchAddressById
 }
