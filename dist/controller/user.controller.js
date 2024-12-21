@@ -26,8 +26,8 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.login = login;
 const findUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userId = res.locals.userId;
-    const result = yield services_1.userService.findMeService(userId);
+    const email = res.locals.email;
+    const result = yield services_1.userService.findMeService(email);
     res.status(201).json(result);
 });
 exports.findUser = findUser;

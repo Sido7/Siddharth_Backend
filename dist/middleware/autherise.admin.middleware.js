@@ -6,7 +6,7 @@ const unauthorised_error_1 = require("../exceptions/unauthorised.error");
 const internalError_1 = require("../exceptions/internalError");
 const autheriseAdmin = (req, res, next) => {
     try {
-        if (res.locals.role !== 'Admin') {
+        if (res.locals.role !== 'admin') {
             next(new unauthorised_error_1.UnAuthorisedError('You are not an admin', base_error_1.ErrorCode.USER_NOT_AUTHORIZED, null));
             return;
         }

@@ -48,7 +48,7 @@ function loginUserService(userData) {
             if (!bcrypt_1.default.compareSync(userData.password, userPassword)) {
                 throw new password_validation_error_1.PasswordValidationError('Invalid password', base_error_1.ErrorCode.INVALID_PASSWORD);
             }
-            const token = jsonwebtoken_1.default.sign({ email: userExist[0].email }, secretKey, { expiresIn: '1d' });
+            const token = jsonwebtoken_1.default.sign({ email: userExist[0].email, role: userExist[0].role, id: userExist[0].id }, secretKey, { expiresIn: '1d' });
             return token;
         }
         catch (err) {
@@ -57,10 +57,10 @@ function loginUserService(userData) {
         }
     });
 }
-function findMeService(userId) {
+function findMeService(email) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const result = yield repository_1.userRepository.findUser(userId);
+            const result = yield repository_1.userRepository.findUser(email);
             return result;
         }
         catch (err) {

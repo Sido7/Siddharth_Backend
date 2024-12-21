@@ -12,18 +12,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = require("../app");
 function createUser(userData) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log(userData);
         const user = yield app_1.prisma.user.create({
             data: userData
         });
         return user;
     });
 }
-function findUser(userId) {
+function findUser(email) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = yield app_1.prisma.user.findUnique({
             where: {
-                id: userId
+                email: email
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role: true,
             }
         });
         return user;
@@ -36,13 +41,22 @@ function findAllUser(payload) {
             filter.email = payload.email;
         }
         const user = yield app_1.prisma.user.findMany({
-            where: filter
+            where: filter,
         });
         return user;
     });
 }
+function fetchUserById(userId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return app_1.prisma.user.findUnique({
+            where: { id: userId },
+        });
+    });
+}
+;
 exports.default = {
     createUser,
     findUser,
-    findAllUser
+    findAllUser,
+    fetchUserById
 };
